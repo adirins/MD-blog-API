@@ -1,0 +1,8 @@
+.article__box {
+    border: 2px solid;
+    border-color: brown;
+    background-color: burlywood;
+    margin-top: 20px;
+    align-items: center;
+   
+}
