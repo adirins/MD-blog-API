@@ -7,7 +7,7 @@ type ArticleData ={
   userid: string,
   id: string
   title: string
-  body: string 
+  body: string ``
 }
 
 
