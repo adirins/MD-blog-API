@@ -1,42 +1,45 @@
-import React from 'react';
+import React from "react";
 import "flexboxgrid";
-import './App.css';
-import { Home } from './components/Pages/home'
-import { About } from './components/Pages/about'
-import { NotFound } from './components/Pages/NotFound'
-import Article from './components/Pages/article'
+import "./App.css";
+import { Hero } from "./components/Pages/hero";
+import { FullArticle } from "./components/Pages/fullArticle";
+import { About } from "./components/Pages/about";
+import { NotFound } from "./components/Pages/NotFound";
 import {
   BrowserRouter as Router,
   Switch,
   Route,
   Link,
-  useHistory
 } from "react-router-dom";
+
 
 const App = () => {
 
-    return (
-      <Router>
-        <Link className="link" to="/">Home</Link>
-        <Link className="link" to="/about">About</Link>
-        <Link className="link" to="/article/1">Articles</Link>
-        <Switch>
-          <Route exact path="/">
-            <Home />             
-          </Route>
-          <Route path="/about">
-            <About />
-          </Route>
-          <Route path="/article/:id" >
-            <Article />
-          </Route>
-          <Route path="/">
-            <NotFound
-              currentURL={window.location.href}
-            />
-          </Route>
-        </Switch>
-      </Router>
-    );
-  };
+  return (
+    <Router>
+      <div className="navig">
+        <Link className="link" to="/">
+          Home
+        </Link>
+        <Link className="link" to="/about">
+          About
+        </Link>
+      </div>
+      <Switch>
+        <Route exact path="/">
+          <Hero/>
+        </Route>
+        <Route path="/about">
+          <About />
+        </Route>
+        <Route path="/article/:id">
+          <FullArticle/>
+        </Route>
+        <Route path="/">
+          <NotFound currentURL={window.location.href} />
+        </Route>
+      </Switch>
+    </Router>
+  );
+};
 export default App;
