@@ -10,7 +10,11 @@ export const Hero = ()  => {
     
     useEffect(() => {
         alert("Wow")
+<<<<<<< HEAD
         toast('Wow!')//kapēc nestrada??
+=======
+        toast('Wow!')
+>>>>>>> 853f73ddf210e440004e740d9929011f8460c3a7
     },[])
     
    
