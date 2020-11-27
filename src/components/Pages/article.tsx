@@ -1,36 +1,63 @@
-import React, {useState} from 'react'
-import { useParams  } from "react-router-dom";
-import { articlesData} from '../data/articlesData'
+import React, { useEffect, useState } from 'react'
+import axios from 'axios'
+import {Link} from 'react-router-dom'
+import "flexboxgrid";
+
+export type ArticleData ={
+    userid: string;
+    id: string;
+    title: string;
+    body: string;
+}
 
 
 const Article = () => {
 
-    let { id } = useParams<{id: string}>();
-    const article = articlesData.find((item) => {
-        return item.id === id
-    })
-    
 
+    const [loading, setLoading] = useState(true)
+    const [articleData,setArticleData]=useState<ArticleData[]>([])
+   
+    useEffect(() => {
+        setLoading(true)
+        axios.get('https://jsonplaceholder.typicode.com/posts')
+            .then((res) => {
+                setArticleData(res.data)
+        setLoading(false)
+        })
+
+    },[])
+
+    
     return (
         <section >
-            <div className="container container-fluid" >
-                <div className="row">
-                    <div className="col-xs-12">
-                        <h1 >
-                            {article?.title}
-                        </h1>
-                        <p>
-                            {article?.text}
-                        </p>
-                    </div>
-                    
-                </div>
-                <div className="row">
-                    <div className="col-xs-12">
-                        <input type="text" placeholder=" tavs komentārs" id="comment" style={ {width:500, height:50}}/>
-                        <label htmlFor="comment"></label>
-                    </div>
-                </div>
+            {loading && <h1>loadin'....</h1>}
+            <div className="container article__wrapper" >   
+                {articleData && !loading &&               
+                    articleData.map(({title, id}) => {
+                        return (
+                            
+                            < div
+                                key={id}
+                                className="row article__box"
+                                >
+                                <div className="col-xs-10">
+                                    <p>
+                                        {title}
+                                    </p>
+                                    
+                                    <div  className="row center-xs">
+                                        <Link to={`/article/${id}`}>view more</Link>
+                                    </div>                                    
+                                </div>
+                                <div className="col-xs-2 ">
+                                    <h2 >
+                                        {id}
+                                    </h2>
+                                </div>
+                            </div>
+                        )
+                    })
+                }
             </div>
         </section>
     )

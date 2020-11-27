@@ -11,7 +11,7 @@ export const NotFound = ({currentURL}: any) => {
                 <div className="row">
                     <div className="col-xs-12">
                         <h1>
-                            {currentURL }  NotFound error 404
+                            {currentURL}  NotFound
                         </h1>
                     </div>
                 </div>
